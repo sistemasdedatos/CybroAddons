@@ -50,7 +50,7 @@ class PosReturn(models.Model):
                     if line:
                         qty = -(data[2]['qty'])
                         line.returned_qty += qty
-        if ui_order['return_ref']:
+        if 'return_ref' in ui_order.keys() and ui_order['return_ref']:
             order['return_ref'] = ui_order['return_ref']
             parent_order = self.search([('pos_reference', '=', ui_order['return_ref'])], limit=1)
             lines = self.env['pos.order.line'].search([('order_id', '=', parent_order.id)])
